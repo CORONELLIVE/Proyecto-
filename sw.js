@@ -1,5 +1,5 @@
 'use strict';
-const CACHE='forma-v1';
+const CACHE='forma-v2';
 const ASSETS=['/','/index.html','/style.css','/app.js','/manifest.webmanifest','/assets/hero.webp','/assets/air.webp','/assets/street.webp','/assets/classic.webp','/assets/icon-192.png','/assets/icon-512.png'];
 self.addEventListener('install',event=>{event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(ASSETS)).then(()=>self.skipWaiting()));});
 self.addEventListener('activate',event=>{event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(key=>key.startsWith('forma-')&&key!==CACHE).map(key=>caches.delete(key)))).then(()=>self.clients.claim()));});
